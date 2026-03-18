@@ -1,137 +1,136 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
-
-const projects = [
-  {
-    id: 1,
-    title: "SaaS Landing Page",
-    description: "A beautiful landing page app using React and Tailwind.",
-    image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
-    demoUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    id: 2,
-    title: "Orbit Analytics Dashboard",
-    description:
-      "Interactive analytics dashboard with data visualization and filtering capabilities.",
-    image: "/projects/project2.png",
-    tags: ["TypeScript", "D3.js", "Next.js"],
-    demoUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    id: 3,
-    title: "E-commerce Platform",
-    description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
-    tags: ["React", "Node.js", "Stripe"],
-    demoUrl: "#",
-    githubUrl: "#",
-  },
-];
+import { useEffect, useState } from "react";
+import { ExternalLink, Github, X } from "lucide-react";
 
 export const ProjectsSection = () => {
+  const [projects, setProjects] = useState([]);
+  const [selected, setSelected] = useState(null);
+
+  // 🔥 Fetch GitHub Repos
+  useEffect(() => {
+    fetch("https://api.github.com/users/Pradumnsaindane/repos")
+      .then((res) => res.json())
+      .then((data) => {
+        const filtered = data
+          .filter((repo) => !repo.fork)
+          .slice(0, 6); // limit projects
+
+        setProjects(filtered);
+      });
+  }, []);
+
   return (
     <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-6xl">
 
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
           Featured <span className="text-primary">Projects</span>
         </h2>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
+        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+          Real-world projects showcasing full-stack development, problem-solving,
+          and scalable application design.
         </p>
 
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          {projects.map((project) => (
+          {projects.map((repo) => (
             <div
-              key={project.id}
-              className="group bg-card rounded-lg overflow-hidden shadow-sm card-hover"
+              key={repo.id}
+              onClick={() => setSelected(repo)}
+              className="
+                cursor-pointer group rounded-2xl
+                bg-white/70 dark:bg-white/5
+                backdrop-blur-xl
+                border border-gray-200 dark:border-white/10
+                p-6
+                transition-all duration-500
+                hover:-translate-y-2 hover:shadow-xl
+              "
             >
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition">
+                {repo.name}
+              </h3>
 
-              {/* Image */}
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                {repo.description || "No description available"}
+              </p>
 
-              {/* Content */}
-              <div className="p-6">
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-semibold mb-1">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-
-                {/* Links */}
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-primary transition"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-primary transition"
-                    >
-                      <Github size={20} />
-                    </a>
-
-                  </div>
-                </div>
-
+              <div className="flex justify-between items-center text-sm">
+                <span>⭐ {repo.stargazers_count}</span>
+                <span>{repo.language}</span>
               </div>
             </div>
           ))}
 
         </div>
-
-        {/* Button */}
-        <div className="text-center mt-12">
-          <a
-            href="https://github.com/Pradumnsaindane7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
-          >
-            Check My Github <ArrowRight size={16} />
-          </a>
-        </div>
-
       </div>
+
+      {/* 🔥 MODAL */}
+      {selected && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={() => setSelected(null)}
+        >
+          <div
+            className="
+              bg-white dark:bg-black
+              rounded-2xl p-8 max-w-lg w-full
+              border border-gray-200 dark:border-white/10
+              relative
+            "
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close */}
+            <button
+              onClick={() => setSelected(null)}
+              className="absolute top-4 right-4"
+            >
+              <X />
+            </button>
+
+            {/* Title */}
+            <h3 className="text-2xl font-bold mb-2">
+              {selected.name}
+            </h3>
+
+            {/* Description */}
+            <p className="text-muted-foreground mb-4">
+              {selected.description || "No description available"}
+            </p>
+
+            {/* Info */}
+            <div className="flex justify-between mb-6">
+              <span>⭐ {selected.stargazers_count}</span>
+              <span>{selected.language}</span>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-4">
+
+              <a
+                href={selected.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cosmic-button flex items-center gap-2"
+              >
+                <Github size={18} /> Code
+              </a>
+
+              <a
+                href={selected.homepage || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 border rounded-lg flex items-center gap-2 hover:bg-primary/10 transition"
+              >
+                <ExternalLink size={18} /> Live
+              </a>
+
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
