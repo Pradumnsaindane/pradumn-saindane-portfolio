@@ -7,10 +7,10 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-black via-purple-900 to-indigo-900"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-blue-900 via--900 to-indigo-900"
     >
       {/* glow effects */}
-      <div className="absolute w-96 h-96 bg-purple-500 blur-[120px] opacity-20 rounded-full top-20 left-10"></div>
+      <div className="absolute w-96 h-96 bg-blue-500 blur-[120px] opacity-20 rounded-full top-20 left-10"></div>
       <div className="absolute w-96 h-96 bg-indigo-500 blur-[120px] opacity-20 rounded-full bottom-10 right-10"></div>
 
       <div className="container max-w-4xl mx-auto text-center z-10">
@@ -19,7 +19,7 @@ export const HeroSection = () => {
           {/* Name */}
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
             <span className="opacity-0 animate-fade-in">
-              Hi, I&apos;m
+              Hi, Im
             </span>
 
             <span className="text-primary opacity-0 animate-fade-in-delay-1">
@@ -38,7 +38,7 @@ export const HeroSection = () => {
                 "Full-Stack Developer",
                 "MERN Stack Engineer",
                 "AI Product Builder",
-                "Startup Founder"
+                "Java Developer"
               ]}
               loop
               cursor
@@ -74,7 +74,7 @@ export const HeroSection = () => {
             <FaNodeJs className="text-green-500 hover:scale-125 transition" />
             <SiJavascript className="text-yellow-400 hover:scale-125 transition" />
             <SiTailwindcss className="text-sky-400 hover:scale-125 transition" />
-            <FaDatabase className="text-indigo-400 hover:scale-125 transition" />
+            <FaDatabase className="text-white-400 hover:scale-125 transition" />
             <FaGithub className="text-white hover:scale-125 transition" />
           </div>
 

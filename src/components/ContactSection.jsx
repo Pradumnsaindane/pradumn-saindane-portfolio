@@ -55,7 +55,7 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium"> Email</h4>
                   <a
-                    href="mailto:hello@gmail.com"
+                    href="psaindane09@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     psaindane09@gmail.com
@@ -69,7 +69,7 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium"> Phone</h4>
                   <a
-                    href="tel:+11234567890"
+                    href="tel:+918767634677"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     +91 8767634677
@@ -98,7 +98,7 @@ export const ContactSection = () => {
                 <a href="https://x.com/pradumncodes7" target="_blank" rel="Twitter">
                   <Twitter />
                 </a>
-                <a href="https://www.instagram.com/pradumncodes/" target="_blank" rel="Instagram">
+                <a href="https://www.instagram.com/pradums17/" target="_blank" rel="Instagram">
                   <Instagram />
                 </a>
               </div>
@@ -126,7 +126,7 @@ export const ContactSection = () => {
                   name="name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
+                  placeholder="Your Name ..."
                 />
               </div>
 
@@ -144,7 +144,7 @@ export const ContactSection = () => {
                   name="email"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
+                  placeholder="xyz@gmail.com"
                 />
               </div>
 
