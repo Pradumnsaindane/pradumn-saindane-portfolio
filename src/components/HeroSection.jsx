@@ -51,8 +51,7 @@ export const HeroSection = () => {
 
           {/* Description */}
           <p className="text-md md:text-lg text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I build scalable web applications and AI-powered products using
-            modern technologies like React, Node.js and Tailwind CSS.
+            A modern developer portfolio showcasing my projects, technical skills, and problem-solving capabilities. Built with a focus on clean UI, performance, and real-world applications to demonstrate full-stack development expertise.
           </p>
 
           {/* Buttons */}
